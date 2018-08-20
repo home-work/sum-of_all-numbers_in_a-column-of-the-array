@@ -4,11 +4,31 @@ import java.util.Scanner;
 public class SumOfAllNumbersInColumn {
     public static void main(String[] args) {
         int[][] array = generateArray();
-        System.out.println("Mảng Random:");
         displayArray(array);
+        int indexOfColumn = enterIndexOfColumnToSum();
+        System.out.println("Tổng các số cột thứ " + indexOfColumn + " là: " + sumOfAllNumbersInColumn(indexOfColumn, array));
+    }
+
+    private static int sumOfAllNumbersInColumn(int indexOfColumn, int[][] array) {
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (j == indexOfColumn-1) {
+                    sum = sum + array[i][j];
+                }
+            }
+        }
+        return sum;
+    }
+
+    private static int enterIndexOfColumnToSum() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập vào chỉ số của cột trong mảng:");
+        return scanner.nextInt();
     }
 
     private static void displayArray(int[][] array) {
+        System.out.println("Mảng Random:");
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 System.out.print(array[i][j] + "\t");
